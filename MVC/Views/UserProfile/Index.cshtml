@@ -1,0 +1,16 @@
+﻿@using System.Security.Claims
+@model dynamic
+@{
+    ViewBag.Title = "User profile";
+}
+
+<h2>Claims:</h2>
+
+
+<dl>
+    @foreach (var claim in ((ClaimsIdentity)User.Identity).Claims)
+    {
+        <dt>@claim.Type</dt>
+        <dd>@claim.Value</dd>
+    }
+</dl>

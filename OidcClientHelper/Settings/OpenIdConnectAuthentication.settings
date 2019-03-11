@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OidcClientHelper.Settings" GeneratedClassName="OpenIdConnectAuthentication">
+  <Profiles />
+  <Settings>
+    <Setting Name="RedirectUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Authority" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:5100</Value>
+    </Setting>
+    <Setting Name="ClientId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ResponseType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ClientSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Scope" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">openid email roles</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
