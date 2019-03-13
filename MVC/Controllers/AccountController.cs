@@ -11,15 +11,15 @@ namespace MVC.Controllers
 {
     public class AccountController : Controller
     {
-        public AccountController()
-        {
-        }
+        //public AccountController()
+        //{
+        //}
 
         //
         // GET: /Account/Login
-        public ActionResult AutoLogin(string returnUrl)
+        public ActionResult AutoLogin()
         {
-            return Redirect(returnUrl);
+            return RedirectToAction("Index", "Home");
         }
 
         //

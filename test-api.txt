@@ -1,1 +1,1 @@
-curl -v --header "Authorization: Bearer token" -X GET "http://localhost:61787/api/TestApi"
+curl -v --header "Authorization: Bearer token" -X GET "http://localhost/mvc-test/api/TestApi"
