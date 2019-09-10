@@ -50,6 +50,7 @@ namespace MVC.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
+            //HttpContext.CurrentHandler
             return RedirectToAction("Index", "Home");
         }
 

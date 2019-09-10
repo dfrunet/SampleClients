@@ -14,6 +14,16 @@ namespace MVC.Controllers
             return View();
         }
 
+
+        [AllowAnonymous]
+        [ChildActionOnly]
+        public ActionResult Configuration(string request)
+        {
+            var psth = new Uri(request).GetComponents(UriComponents.Path, UriFormat.UriEscaped);
+            IHtmlString output = new HtmlString("{q=\"w\"}"); 
+            return PartialView(output);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

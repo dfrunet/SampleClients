@@ -1,0 +1,17 @@
+﻿@model IHtmlString
+<script>
+    angular.module('applicationConfig', [])
+        // config module has provider with same name
+        .provider('auditConfig', function () {
+            // initial / default config
+            var config = @Html.Raw(Model);
+            return {
+                set: function (settings) {
+                    config = settings;
+                },
+                $get:  function $get() {
+                    return config;
+                }
+            };
+        });
+</script>

@@ -4,9 +4,12 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using System.Web.Helpers;
+using IdentityModel.Client;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Owin;
@@ -16,6 +19,7 @@ using Microsoft.Owin.Host.SystemWeb;
 using Microsoft.Owin.Logging;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OAuth;
 using Microsoft.Owin.Security.OpenIdConnect;
 using OidcClientHelper.Bearer;
 using OidcClientHelper.Helpers;
@@ -163,7 +167,8 @@ namespace OidcClientHelper
                         }
                     }
                 },
-                ExpireTimeSpan = TimeSpan.FromSeconds(600)
+                ExpireTimeSpan = TimeSpan.FromSeconds(600),
+                SlidingExpiration = true
             });
 
             //tenant check
@@ -226,7 +231,7 @@ namespace OidcClientHelper
 
                         if (notification.ProtocolMessage.RequestType == OpenIdConnectRequestType.Authentication)
                         {
-                            if (notification.Request.IsAjaxRequest())
+                            if (notification.Request.IsAjaxRequest() || notification.Request.Uri.OriginalString.IndexOf("/api/", StringComparison.InvariantCultureIgnoreCase)>=0)
                             {
                                 var builder = new StringBuilder();
                                 builder.AppendLine("Ajax call to restricted content.");
@@ -266,7 +271,7 @@ namespace OidcClientHelper
                         context.Response.WriteAsync(context.Exception.Message);
                         return Task.FromResult(0);
                     },
-
+                    
                     SecurityTokenValidated = async n =>
                     {
                         var id = n.AuthenticationTicket.Identity;
@@ -323,6 +328,10 @@ namespace OidcClientHelper
                         //nid.AddClaim(new Claim("app_specific", "some data"));
                         nid.AddClaim(new Claim(ClaimTypes.Name, email.Value, email.ValueType, email.Issuer));
 
+                        if (n.ProtocolMessage.AccessToken != null)
+                        {
+                            var delegatedToken = await DelegateAsync(n.ProtocolMessage.AccessToken);
+                        }
 
                         //var timeInTicks = long.Parse(exp.Value) * TimeSpan.TicksPerSecond;
                         //var expTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddTicks(timeInTicks);
@@ -333,6 +342,9 @@ namespace OidcClientHelper
                             n.AuthenticationTicket.Properties);
 
 
+                        n.AuthenticationTicket.Properties.AllowRefresh = true;
+                        n.AuthenticationTicket.Properties.IsPersistent = true;
+
 
                         await Task.FromResult(0);
                     }
@@ -340,6 +352,40 @@ namespace OidcClientHelper
             });
 
             app.UseStageMarker(PipelineStage.Authenticate);
+        }
+
+        //just an example of delegation
+        private async Task<TokenResponse> DelegateAsync(string userToken)
+        {
+            var payload = new
+            {
+                token = userToken
+            };
+            var disco = await new HttpClient().GetDiscoveryDocumentAsync(OpenIdConnectAuthentication.Default.Authority);
+
+            var client = new HttpClient();
+
+            var response = await client.RequestTokenAsync(new TokenRequest
+            {
+                Address = disco.TokenEndpoint,
+                GrantType = "delegation",
+
+                ClientId = "another-svc-client",
+                ClientSecret = "some-secret-2019",
+
+                Parameters =
+                {
+                    { "token", userToken},
+                    { "scope", "graph-api graph-api.backend" }
+                }
+            });
+            return response;
+            // create token client
+            //var client = new TokenClient(disco.TokenEndpoint, "another-svc-client", "some-secret-2019");
+
+            // send custom grant to token endpoint, return response
+            //return await client.RequestCustomGrantAsync("delegation", "graph-api graph-api.backend", payload);
+
         }
     }
 }

@@ -7,6 +7,37 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OidcClientHelper", "OidcClientHelper\OidcClientHelper.csproj", "{B6FD3901-7E06-4855-8F87-A265559C5D6F}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebForms", "WebForms\", "{3CA7AB13-AA95-4731-ABE9-AEA3440A8051}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.2"
+		ProjectReferences = "{b6fd3901-7e06-4855-8f87-a265559c5d6f}|OidcClientHelper.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_50944"
+		Debug.AspNetCompiler.PhysicalPath = "WebForms\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50944\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_50944"
+		Release.AspNetCompiler.PhysicalPath = "WebForms\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50944\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50944"
+		SlnRelativePath = "WebForms\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreMVC", "CoreMVC\CoreMVC.csproj", "{D903B18D-EAC8-40D9-A4DE-23F278881292}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiCaller", "ApiCaller\ApiCaller.csproj", "{48AE51DD-6B89-4081-97A4-98940018F2BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreMVCApiOnly", "CoreMVCApiOnly\CoreMVCApiOnly.csproj", "{7C3CA3A2-7CD9-444C-94FF-9F9657729F87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCBearerNuget", "MVCBearerNuget\MVCBearerNuget.csproj", "{87D8F6A8-B5BA-45CE-B0F3-4D365C17DDED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +52,26 @@ Global
 		{B6FD3901-7E06-4855-8F87-A265559C5D6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6FD3901-7E06-4855-8F87-A265559C5D6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6FD3901-7E06-4855-8F87-A265559C5D6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CA7AB13-AA95-4731-ABE9-AEA3440A8051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA7AB13-AA95-4731-ABE9-AEA3440A8051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA7AB13-AA95-4731-ABE9-AEA3440A8051}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA7AB13-AA95-4731-ABE9-AEA3440A8051}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{D903B18D-EAC8-40D9-A4DE-23F278881292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D903B18D-EAC8-40D9-A4DE-23F278881292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D903B18D-EAC8-40D9-A4DE-23F278881292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D903B18D-EAC8-40D9-A4DE-23F278881292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48AE51DD-6B89-4081-97A4-98940018F2BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48AE51DD-6B89-4081-97A4-98940018F2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48AE51DD-6B89-4081-97A4-98940018F2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48AE51DD-6B89-4081-97A4-98940018F2BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C3CA3A2-7CD9-444C-94FF-9F9657729F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C3CA3A2-7CD9-444C-94FF-9F9657729F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C3CA3A2-7CD9-444C-94FF-9F9657729F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C3CA3A2-7CD9-444C-94FF-9F9657729F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87D8F6A8-B5BA-45CE-B0F3-4D365C17DDED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D8F6A8-B5BA-45CE-B0F3-4D365C17DDED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D8F6A8-B5BA-45CE-B0F3-4D365C17DDED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D8F6A8-B5BA-45CE-B0F3-4D365C17DDED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
